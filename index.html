@@ -1,0 +1,251 @@
+from pathlib import Path
+import zipfile, textwrap, re
+
+root = Path("/mnt/data/remusic-website")
+(root / "assets").mkdir(parents=True, exist_ok=True)
+
+files = {
+"index.html": r'''<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ReMusic is a modern music player with Lo-Fi, 8D audio, DJ effects, lyrics, equalizer, playlists and offline listening.">
+  <meta name="theme-color" content="#0b0b10">
+  <title>ReMusic — Music, Your Way</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <nav class="nav container">
+    <a class="brand" href="index.html"><span class="logo">R</span><span>ReMusic</span></a>
+    <div class="nav-links">
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero container">
+    <div class="hero-copy">
+      <p class="eyebrow">MUSIC • LO-FI • 8D • DJ</p>
+      <h1>Your music.<br><span>Your way.</span></h1>
+      <p class="lead">ReMusic is a powerful music player built for people who want more from their listening experience.</p>
+      <div class="buttons">
+        <a class="button primary" href="support.html">Get Support</a>
+        <a class="button secondary" href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="hero-card" aria-label="ReMusic feature preview">
+      <div class="album-orb">♫</div>
+      <div class="now-playing">NOW PLAYING</div>
+      <h2>Music, reimagined.</h2>
+      <p>Lo-Fi · 8D Audio · DJ Effects</p>
+      <div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+  </section>
+
+  <section class="features container">
+    <div class="section-heading">
+      <p class="eyebrow">FEATURES</p>
+      <h2>More ways to enjoy your music.</h2>
+      <p>Powerful tools, wrapped in a simple listening experience.</p>
+    </div>
+    <div class="grid">
+      <article class="card"><div class="icon">🎧</div><h3>Lo-Fi</h3><p>Relax with a chill Lo-Fi listening experience and give your favorite tracks a different atmosphere.</p></article>
+      <article class="card"><div class="icon">🌌</div><h3>8D Audio</h3><p>Enjoy immersive spatial-style effects designed to make compatible headphones feel more expansive.</p></article>
+      <article class="card"><div class="icon">🎛️</div><h3>DJ Effects</h3><p>Experiment with DJ-style controls and effects for a fresh way to experience your tracks.</p></article>
+      <article class="card"><div class="icon">🎤</div><h3>Lyrics</h3><p>Follow along with lyrics while your music plays.</p></article>
+      <article class="card"><div class="icon">🎚️</div><h3>Equalizer</h3><p>Fine-tune your sound and create a listening experience that fits your taste.</p></article>
+      <article class="card"><div class="icon">❤️</div><h3>Playlists & Favorites</h3><p>Keep the music you love organized and easy to find.</p></article>
+    </div>
+  </section>
+
+  <section class="cta container">
+    <div>
+      <p class="eyebrow">NEED HELP?</p>
+      <h2>We're here to help.</h2>
+      <p>Find answers, troubleshooting tips, and a way to contact the ReMusic team.</p>
+    </div>
+    <a class="button primary" href="support.html">Visit Support</a>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> ReMusic</span>
+    <div><a href="support.html">Support</a><a href="privacy.html">Privacy Policy</a></div>
+  </div>
+</footer>
+<script src="assets/script.js"></script>
+</body>
+</html>
+''',
+
+"support.html": r'''<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ReMusic support, FAQ and contact information.">
+  <title>ReMusic Support</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header"><nav class="nav container">
+  <a class="brand" href="index.html"><span class="logo">R</span><span>ReMusic</span></a>
+  <div class="nav-links"><a href="index.html">Home</a><a href="privacy.html">Privacy</a></div>
+</nav></header>
+<main class="page container">
+  <p class="eyebrow">SUPPORT</p>
+  <h1>How can we help?</h1>
+  <p class="lead">Find answers to common questions or contact the ReMusic team if you need more help.</p>
+
+  <section class="support-contact">
+    <h2>Contact ReMusic Support</h2>
+    <p>For bug reports, feedback, feature requests, or other questions, email us at:</p>
+    <a class="email" href="mailto:SUPPORT_EMAIL">SUPPORT_EMAIL</a>
+    <p class="muted">Replace <strong>SUPPORT_EMAIL</strong> with your real support email before publishing this site.</p>
+  </section>
+
+  <section>
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq">
+      <details><summary>What is ReMusic?</summary><p>ReMusic is a feature-rich music player focused on giving you more ways to listen, including Lo-Fi, 8D audio, DJ effects, lyrics, equalizer controls, playlists and favorites.</p></details>
+      <details><summary>Why can't I hear an audio effect?</summary><p>Some effects work best with headphones or earphones. Check your device volume, audio output and the effect controls in ReMusic.</p></details>
+      <details><summary>Why are lyrics not showing?</summary><p>Lyrics availability can depend on the track and the source of the music. If lyrics are unavailable for a particular song, try another track or check your connection.</p></details>
+      <details><summary>Can I use ReMusic offline?</summary><p>ReMusic supports offline listening for music that has been made available for offline use within the app, subject to the applicable source and content rights.</p></details>
+      <details><summary>How do I report a bug?</summary><p>Email support with your device model, operating system version, ReMusic version, what happened, and the steps that reproduce the issue. Please do not send passwords, payment details, or other sensitive information.</p></details>
+      <details><summary>How can I request a feature?</summary><p>Send us an email describing the feature and how you would use it. We review suggestions as we plan future releases.</p></details>
+    </div>
+  </section>
+</main>
+<footer class="footer"><div class="container footer-inner"><span>© <span id="year"></span> ReMusic</span><div><a href="index.html">Home</a><a href="privacy.html">Privacy Policy</a></div></div></footer>
+<script src="assets/script.js"></script>
+</body>
+</html>
+''',
+
+"privacy.html": r'''<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ReMusic Privacy Policy.">
+  <title>ReMusic — Privacy Policy</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header"><nav class="nav container">
+  <a class="brand" href="index.html"><span class="logo">R</span><span>ReMusic</span></a>
+  <div class="nav-links"><a href="index.html">Home</a><a href="support.html">Support</a></div>
+</nav></header>
+<main class="page container">
+  <p class="eyebrow">LEGAL</p>
+  <h1>Privacy Policy</h1>
+  <p class="muted"><strong>Last updated:</strong> September 2, 2026</p>
+
+  <p>This Privacy Policy explains how ReMusic ("ReMusic", "we", "us", or "our") handles information when you use the ReMusic mobile application and this website.</p>
+
+  <h2>1. Information We Collect</h2>
+  <p>The information ReMusic collects depends on the features you use and the services enabled in the app. This may include information needed to provide app functionality, such as locally stored preferences, playlists, favorites, downloads, playback settings, and similar app data.</p>
+  <p>If you contact us by email, we receive the information you choose to provide, such as your email address and the contents of your message.</p>
+  <p>If advertising or analytics services are enabled in a version of ReMusic, those third-party services may collect device, usage, advertising, or diagnostic information according to their own policies and the choices available to you.</p>
+
+  <h2>2. How We Use Information</h2>
+  <p>We may use information to provide and maintain ReMusic, remember your preferences, improve app performance and features, respond to support requests, prevent abuse, and understand technical problems.</p>
+
+  <h2>3. Local Data</h2>
+  <p>Some ReMusic data may be stored locally on your device so that features such as preferences, playlists, favorites, and offline functionality can work. Local data can generally be removed by deleting the app or using the relevant controls provided by your device or the app.</p>
+
+  <h2>4. Third-Party Services</h2>
+  <p>ReMusic may use third-party services for functions such as advertising, analytics, content delivery, authentication, or other technical services. When these services are used, they may process information under their own privacy policies. We encourage you to review the policies of any third-party service presented to you by the app.</p>
+
+  <h2>5. Music and Third-Party Content</h2>
+  <p>ReMusic may provide access to music or other content from sources outside our control. Availability, metadata, lyrics, playback and other content-related functionality may depend on those sources and their terms. ReMusic does not claim ownership of third-party content unless explicitly stated.</p>
+
+  <h2>6. Data Retention</h2>
+  <p>We retain information only for as long as reasonably necessary for the purposes described in this policy, to provide services, resolve disputes, comply with legal obligations, or protect our rights. Information stored locally on your device remains there until removed by you or by the app/device.</p>
+
+  <h2>7. Children's Privacy</h2>
+  <p>ReMusic is not intended to knowingly collect personal information from children in violation of applicable law. If you believe a child has provided personal information to us, please contact us so we can review and take appropriate action.</p>
+
+  <h2>8. Security</h2>
+  <p>We take reasonable measures designed to protect information handled by ReMusic. However, no method of transmission or storage can be guaranteed to be completely secure.</p>
+
+  <h2>9. Your Choices</h2>
+  <p>You may be able to control permissions, advertising choices, notifications, and other settings through ReMusic or your device settings. You can also contact us about privacy questions or requests.</p>
+
+  <h2>10. Changes to This Policy</h2>
+  <p>We may update this Privacy Policy when ReMusic's features, services, or legal requirements change. The updated version will be posted on this page with a new "Last updated" date.</p>
+
+  <h2>11. Contact Us</h2>
+  <p>For privacy questions or requests, contact:</p>
+  <p><a class="email" href="mailto:SUPPORT_EMAIL">SUPPORT_EMAIL</a></p>
+  <p class="muted">Before publishing, replace <strong>SUPPORT_EMAIL</strong> with the email address you use for ReMusic support/privacy requests.</p>
+</main>
+<footer class="footer"><div class="container footer-inner"><span>© <span id="year"></span> ReMusic</span><div><a href="index.html">Home</a><a href="support.html">Support</a></div></div></footer>
+<script src="assets/script.js"></script>
+</body>
+</html>
+''',
+
+"assets/style.css": r''':root{--bg:#09090d;--surface:#111118;--surface2:#171720;--text:#f6f6f8;--muted:#a6a6b3;--line:#272733;--accent:#b8ff3d;--max:1080px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 75% 0%,#242438 0,transparent 32%),var(--bg);color:var(--text);font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+a{color:inherit;text-decoration:none}.container{width:min(calc(100% - 40px),var(--max));margin:auto}
+.site-header{border-bottom:1px solid var(--line);background:rgba(9,9,13,.82);backdrop-filter:blur(14px);position:sticky;top:0;z-index:10}.nav{height:72px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800}.logo{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--accent);color:#09090d;font-weight:900}.nav-links{display:flex;gap:25px;color:var(--muted);font-weight:600}.nav-links a:hover,.footer a:hover{color:var(--text)}
+.hero{min-height:620px;display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:center}.eyebrow{color:var(--accent);font-size:12px;letter-spacing:2px;font-weight:800;margin:0 0 14px}.hero h1{font-size:clamp(54px,8vw,92px);line-height:.98;letter-spacing:-4px;margin:0 0 25px}.hero h1 span{color:var(--accent)}.lead{font-size:20px;color:var(--muted);max-width:650px}.buttons{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}.button{display:inline-block;padding:12px 20px;border-radius:12px;font-weight:800;border:1px solid var(--line)}.primary{background:var(--accent);color:#09090d;border-color:var(--accent)}.secondary{background:var(--surface);color:var(--text)}
+.hero-card{background:linear-gradient(145deg,#1d1d2a,#0f0f15);border:1px solid var(--line);border-radius:28px;padding:40px;text-align:center;box-shadow:0 30px 80px #0008}.album-orb{margin:auto;width:190px;height:190px;border-radius:50%;display:grid;place-items:center;font-size:70px;background:radial-gradient(circle at 35% 30%,#f4ffd7,#b8ff3d 30%,#454e2b 65%,#15151b);color:#111}.now-playing{font-size:11px;letter-spacing:2px;color:var(--muted);margin-top:30px}.hero-card h2{font-size:30px;margin:4px 0}.hero-card p{color:var(--muted)}.bars{height:50px;display:flex;align-items:end;justify-content:center;gap:5px;margin-top:20px}.bars i{width:6px;border-radius:10px;background:var(--accent);animation:pulse 1s infinite alternate}.bars i:nth-child(1){height:20%}.bars i:nth-child(2){height:55%;animation-delay:.1s}.bars i:nth-child(3){height:90%;animation-delay:.2s}.bars i:nth-child(4){height:45%;animation-delay:.3s}.bars i:nth-child(5){height:75%;animation-delay:.4s}.bars i:nth-child(6){height:35%;animation-delay:.5s}.bars i:nth-child(7){height:65%;animation-delay:.6s}.bars i:nth-child(8){height:28%;animation-delay:.7s}@keyframes pulse{to{opacity:.55;transform:scaleY(.7)}}
+.features{padding:90px 0}.section-heading{max-width:650px;margin-bottom:35px}.section-heading h2,.cta h2{font-size:42px;line-height:1.1;margin:0 0 12px;letter-spacing:-1.5px}.section-heading p:not(.eyebrow),.cta p{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{padding:28px;background:var(--surface);border:1px solid var(--line);border-radius:20px}.icon{font-size:27px}.card h3{margin:14px 0 6px}.card p{color:var(--muted);margin:0}.cta{margin:30px auto 100px;padding:45px;background:var(--surface);border:1px solid var(--line);border-radius:25px;display:flex;align-items:center;justify-content:space-between;gap:30px}.cta p{max-width:650px}
+.page{max-width:820px;padding:80px 20px}.page h1{font-size:58px;line-height:1.05;letter-spacing:-2px;margin:0 0 20px}.page h2{margin-top:45px;font-size:25px}.page p,.page li{color:#c1c1ca}.page strong{color:var(--text)}.support-contact{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:28px;margin:45px 0}.email{color:var(--accent);font-weight:800}.muted{color:var(--muted)!important}.faq details{border-bottom:1px solid var(--line);padding:20px 0}.faq summary{cursor:pointer;font-weight:750}.faq p{margin-bottom:0}.footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted)}.footer-inner{display:flex;justify-content:space-between;gap:20px}.footer-inner div{display:flex;gap:20px}
+@media(max-width:800px){.hero{grid-template-columns:1fr;padding:70px 0}.hero-card{max-width:520px}.grid{grid-template-columns:1fr 1fr}.cta{align-items:flex-start;flex-direction:column}.page h1{font-size:46px}}
+@media(max-width:520px){.container{width:min(calc(100% - 28px),var(--max))}.nav{height:64px}.nav-links{gap:14px;font-size:14px}.hero{min-height:auto;padding:70px 0}.hero h1{font-size:56px;letter-spacing:-3px}.hero-card{padding:28px 20px}.album-orb{width:150px;height:150px}.grid{grid-template-columns:1fr}.features{padding:60px 0}.section-heading h2,.cta h2{font-size:34px}.footer-inner{flex-direction:column}}
+''',
+
+"assets/script.js": r'''document.querySelectorAll("#year").forEach(el => el.textContent = new Date().getFullYear());''',
+
+"README.md": r'''# ReMusic Website
+
+A lightweight static website for ReMusic, designed for GitHub Pages, Cloudflare Pages, Netlify, or any static hosting.
+
+## Pages
+
+- `index.html` — ReMusic landing page
+- `support.html` — App Store Support URL
+- `privacy.html` — Privacy Policy URL
+- `assets/style.css` — styling
+- `assets/script.js` — footer year
+
+## Before publishing
+
+1. Replace every `SUPPORT_EMAIL` with your real support/privacy email.
+2. Review the Privacy Policy so it accurately reflects the actual ReMusic app, SDKs, advertising, analytics, permissions, and data practices.
+3. If ReMusic uses Google AdMob, Firebase, RevenueCat, analytics, or other third-party SDKs, update the Privacy Policy and App Store privacy disclosures to match the exact SDKs and data they collect.
+4. Add your App Store link when the iOS listing is live.
+5. If your legal/business details differ, update the policy accordingly.
+
+## GitHub Pages
+
+Create a GitHub repository, upload all files while preserving the `assets` folder, then enable Pages from the repository settings. Use the generated Pages URL as your App Store Connect Support URL and Privacy Policy URL.
+
+## Important
+
+This privacy policy is a customizable template, not legal advice. It should be reviewed against the actual data practices and SDK configuration of ReMusic before publishing.
+'''
+}
+
+for rel, content in files.items():
+    p = root / rel
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(content, encoding="utf-8")
+
+zip_path = Path("/mnt/data/ReMusic-Website.zip")
+with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
+    for p in root.rglob("*"):
+        if p.is_file():
+            z.write(p, p.relative_to(root))
+
+print(f"Created: {zip_path}")
+print("Files:")
+for p in sorted(root.rglob("*")):
+    if p.is_file():
+        print("-", p.relative_to(root))
