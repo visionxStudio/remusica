@@ -128,7 +128,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 @media (max-width:960px){.hero-grid{grid-template-columns:1fr}}
 h1{
   font-family:var(--cond);font-weight:700;text-transform:uppercase;
-  font-size:clamp(46px,6.4vw,88px);line-height:.96;letter-spacing:-.015em;
+  font-size:clamp(38px,4.5vw,58px);line-height:1;letter-spacing:-.015em;
   text-wrap:balance;
 }
 h1 .lit{color:var(--accent);transition:color .5s}
@@ -157,13 +157,12 @@ h1 .lit{color:var(--accent);transition:color .5s}
   position:relative;background:var(--cavity);border:1px solid var(--edge);border-radius:7px;overflow:hidden;
 }
 .vu canvas{display:block;width:100%;height:132px}
-.strip-mid{display:flex;align-items:flex-end;gap:16px;margin-top:14px}
-.faders-mini{flex:1;display:flex;gap:10px;align-items:flex-end;height:64px;padding:10px 12px 0;background:var(--cavity);border:1px solid var(--edge);border-radius:7px}
-.fm{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;height:100%;justify-content:flex-end}
+.strip-mid{display:flex;align-items:stretch;gap:16px;margin-top:14px}
+.faders-mini{flex:1;display:flex;gap:9px;align-items:flex-end;height:88px;padding:12px 14px 0;background:var(--cavity);border:1px solid var(--edge);border-radius:7px}
+.fm{flex:1;display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end;min-width:0}
 .fm i{
-  width:100%;max-width:16px;border-radius:2px 2px 0 0;
-  background:linear-gradient(180deg,var(--accent),var(--accent) 60%,rgba(0,0,0,.25));
-  transition:height .12s linear;height:12%;
+  width:100%;max-width:18px;border-radius:2px 2px 0 0;min-height:4px;
+  height:100%;transform-origin:bottom;transform:scaleY(.3);
 }
 .fm i.hot{background:linear-gradient(180deg,var(--red-hi),var(--red) 50%,rgba(0,0,0,.25))}
 .faders-mini .vu-labels{position:absolute;visibility:hidden}
@@ -191,9 +190,10 @@ h1 .lit{color:var(--accent);transition:color .5s}
 .tbtn.play svg{width:19px;height:19px}
 .tprog{flex:1;min-width:0}
 .tbar{height:5px;border-radius:3px;background:#20242c;position:relative;overflow:hidden}
-.tbar i{position:absolute;inset:0;width:38%;background:var(--accent);border-radius:3px;transition:width .3s linear}
-.trow{display:flex;justify-content:space-between;margin-top:7px;font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.06em}
-.trow .title{color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tbar i{position:absolute;inset:0;width:100%;background:var(--accent);border-radius:3px;transform-origin:left;transform:scaleX(.38)}
+.trow{display:flex;gap:12px;align-items:baseline;margin-top:7px;font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.06em}
+.trow .title{color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0}
+.trow .time{white-space:nowrap;flex:none}
 
 /* ---------- patch chain ---------- */
 .chain-sec{padding:clamp(40px,5vw,64px) 0 clamp(28px,4vw,48px)}
@@ -340,7 +340,7 @@ h2 .lit{color:var(--accent);transition:color .5s}
 .hslider .ticks{position:absolute;left:0;right:0;top:20px;height:4px;display:flex;justify-content:space-between}
 .hslider .ticks i{width:1px;background:var(--edge)}
 .loopbar{position:relative;height:34px;background:var(--cavity);border:1px solid var(--edge);border-radius:5px;margin-top:2px}
-.loopbar .region{position:absolute;top:0;bottom:0;background:var(--accent-soft);border-left:2px solid var(--accent);border-right:2px solid var(--accent);transition:left .3s var(--ease),right .3s var(--ease),background .4s}
+.loopbar .region{position:absolute;top:0;bottom:0;background:var(--accent-soft);border-left:2px solid var(--accent);border-right:2px solid var(--accent);transition:background .4s}
 .loopbar .mark{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--dim)}
 .loopbtns{display:flex;gap:8px;margin-top:12px}
 .mini-btn{
@@ -538,7 +538,7 @@ footer{border-top:1px solid var(--edge);background:var(--cavity);padding:34px 0 
 
 <header class="topnav">
   <div class="wrap">
-    <a class="brand" href="./" aria-label="remusic home">
+    <a class="brand" href="./" aria-label="ReMusic home">
       <img src="assets/logo-180.png" alt="" width="26" height="26">
       <b>re<em>music</em></b>
     </a>
@@ -560,14 +560,14 @@ footer{border-top:1px solid var(--edge);background:var(--cavity);padding:34px 0 
     <div class="hero-grid">
       <div>
         <h1 class="rv">Everything you own,<br><span class="lit">played like it matters.</span></h1>
-        <p class="hero-sub rv" style="--d:1">remusic is a <b>free offline + online music player</b> for Android &amp; iOS — a <b>10-band equalizer</b>, a full <b>effects rack</b>, a real-time <b>visualizer</b>, and a <b>queue with git powers</b>. Your files. No account. No paywall.</p>
+        <p class="hero-sub rv" style="--d:1">remusic is a <b>free offline + online music player</b> for Android &amp; iOS: a <b>10-band equalizer</b>, a full <b>effects rack</b>, a real-time <b>visualizer</b>, and a <b>queue with git powers</b>. Your files. No account. No paywall.</p>
         <div class="hero-ctas rv" style="--d:2">
           <a class="btn btn-red" href="#output">Get remusic <span class="skey">FREE</span></a>
           <a class="btn btn-ghost" href="#chain">Walk the signal chain
             <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v11m0 0 4-4m-4 4-4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
-        <p class="hero-note rv mono" style="--d:3">MP3 · FLAC · AAC · OPUS — OFFLINE FIRST, STREAMS WHEN YOU WANT</p>
+        <p class="hero-note rv mono" style="--d:3">MP3 · FLAC · AAC · OPUS · OFFLINE FIRST, STREAMS WHEN YOU WANT</p>
       </div>
 
       <div class="strip rv" style="--d:2" aria-label="Interactive demo of remusic's playback engine">
@@ -600,7 +600,7 @@ footer{border-top:1px solid var(--edge);background:var(--cavity);padding:34px 0 
           </button>
           <div class="tprog">
             <div class="tbar"><i id="tfill"></i></div>
-            <div class="trow"><span class="title" id="ttitle">Night Drive — Mara Voss</span><span class="mono" id="ttime">1:12 / 3:48</span></div>
+            <div class="trow"><span class="title" id="ttitle">Night Drive — Mara Voss</span><span class="time" id="ttime">1:12 / 3:48</span></div>
           </div>
           <span class="lamp on" id="tLamp" aria-hidden="true"></span>
         </div>
@@ -633,7 +633,7 @@ footer{border-top:1px solid var(--edge);background:var(--cavity);padding:34px 0 
   <div class="wrap">
     <div class="rail rv" aria-hidden="true"><span class="screw"></span><span class="fn">INPUT · LIBRARY</span><span class="rule"></span><span class="screw"></span></div>
     <h2 class="rv">Plays everything <span class="lit">you already own.</span></h2>
-    <p class="lede rv" style="--d:1">Point remusic at your on-device library and it scans every file — <b>MP3, FLAC, AAC, Opus and more</b> — with <b>gapless playback</b> so albums play like albums. It remembers where you stopped and what you were about to hear.</p>
+    <p class="lede rv" style="--d:1">Point remusic at your on-device library and it scans every file: <b>MP3, FLAC, AAC, Opus and more</b>, with <b>gapless playback</b> so albums play like albums. It remembers where you stopped and what you were about to hear.</p>
     <div class="artifact two-col rv" style="--d:2">
       <div class="col">
         <div class="side-h">Jump back in</div>
@@ -676,14 +676,14 @@ footer{border-top:1px solid var(--edge);background:var(--cavity);padding:34px 0 
   <div class="wrap">
     <div class="rail rv" aria-hidden="true"><span class="screw"></span><span class="fn">EQ-10 · TONE</span><span class="rule"></span><span class="screw"></span></div>
     <h2 class="rv">Ten bands of <span class="lit">actual control.</span></h2>
-    <p class="lede rv" style="--d:1">This one works — drag the faders. A <b>10-band equalizer</b> with per-band gain, plus <b>ReplayGain</b> so loud and quiet tracks meet at the same level. Presets get you close; your ears finish the job.</p>
+    <p class="lede rv" style="--d:1">This one works: drag the faders. A <b>10-band equalizer</b> with per-band gain, plus <b>ReplayGain</b> so loud and quiet tracks meet at the same level. Presets get you close; your ears finish the job.</p>
     <div class="artifact eq-wrap rv" style="--d:2">
       <canvas id="eqCurve" height="240" aria-hidden="true" style="width:100%;height:120px"></canvas>
       <div class="eq-bands" id="eqBands"></div>
       <div class="eq-foot">
         <span class="side-h">Presets</span>
-        <button class="chip" data-preset="flat" aria-pressed="true">Flat</button>
-        <button class="chip" data-preset="bass">Bass boost</button>
+        <button class="chip" data-preset="flat">Flat</button>
+        <button class="chip" data-preset="bass" aria-pressed="true">Bass boost</button>
         <button class="chip" data-preset="vocal">Vocal</button>
         <button class="chip" data-preset="wide">Extra stereo</button>
         <span class="mono" style="margin-left:auto;font-size:11px;color:var(--faint);letter-spacing:.1em">REPLAYGAIN <em style="font-style:normal;color:var(--accent);transition:color .4s">ON</em></span>
@@ -697,12 +697,12 @@ footer{border-top:1px solid var(--edge);background:var(--cavity);padding:34px 0 
   <div class="wrap">
     <div class="rail rv" aria-hidden="true"><span class="screw"></span><span class="fn">FX · OUTBOARD</span><span class="rule"></span><span class="screw"></span></div>
     <h2 class="rv">A studio chain <span class="lit">on your phone.</span></h2>
-    <p class="lede rv" style="--d:1">Bass boost, reverb, echo, crossfeed, stereo width, crystalizer — each one a rack unit you can switch in or out. Below them, the fine controls: <b>speed &amp; pitch set independently</b>, <b>A-B loop</b> for any passage, and a sleep timer you can extend from the player.</p>
+    <p class="lede rv" style="--d:1">Bass boost, reverb, echo, crossfeed, stereo width, crystalizer: each one a rack unit you can switch in or out. Below them, the fine controls: <b>speed &amp; pitch set independently</b>, <b>A-B loop</b> for any passage, and a sleep timer you can extend from the player.</p>
     <div class="artifact rv" style="--d:2">
       <div class="rackgrid">
         <div class="fx on" data-fx>
           <div class="fx-head"><span class="lamp on" aria-hidden="true"></span><b>Bass Boost</b></div>
-          <p>Low shelf with adjustable gain — hips, not mud.</p>
+          <p>Low shelf with adjustable gain (hips, not mud).</p>
         </div>
         <div class="fx" data-fx>
           <div class="fx-head"><span class="lamp" aria-hidden="true"></span><b>Reverb</b></div>
@@ -745,7 +745,7 @@ footer{border-top:1px solid var(--edge);background:var(--cavity);padding:34px 0 
         </div>
         <div class="fx tall">
           <div class="fx-head"><span class="lamp" aria-hidden="true"></span><b>A-B Loop</b></div>
-          <p>Mark any passage and repeat it — practice a solo, learn a part.</p>
+          <p>Mark any passage and repeat it: practice a solo, learn a part.</p>
           <div class="loopbar" aria-hidden="true">
             <span class="mark" id="markA" style="left:18%"></span>
             <span class="mark" id="markB" style="left:46%"></span>
@@ -757,7 +757,7 @@ footer{border-top:1px solid var(--edge);background:var(--cavity);padding:34px 0 
             <button class="mini-btn" id="loopC">CLEAR</button>
           </div>
         </div>
-        <div class="fx wide">
+        <div class="fx wide" style="grid-column:1/-1">
           <div class="fx-head"><span class="lamp on" id="sleepLamp" aria-hidden="true"></span><b>Sleep Timer</b></div>
           <p>Set it, extend it, check the countdown from the now-playing screen.</p>
           <div style="display:flex;align-items:center;gap:14px;margin-top:2px">
@@ -776,7 +776,7 @@ footer{border-top:1px solid var(--edge);background:var(--cavity);padding:34px 0 
   <div class="wrap">
     <div class="rail rv" aria-hidden="true"><span class="screw"></span><span class="fn">VIZ · REAL-TIME</span><span class="rule"></span><span class="screw"></span></div>
     <h2 class="rv">Watch <span class="lit">the sound work.</span></h2>
-    <p class="lede rv" style="--d:1">A real-time engine reading the actual audio: <b>nine visualizer types</b>, spectrum and waveform readouts, album art that <b>pulses with the bass</b>, and a bass-reactive <b>Ambient Glow</b> around whatever's playing. This panel is live — switch its modes.</p>
+    <p class="lede rv" style="--d:1">A real-time engine reading the actual audio: <b>nine visualizer types</b>, spectrum and waveform readouts, album art that <b>pulses with the bass</b>, and a bass-reactive <b>Ambient Glow</b> around whatever's playing. This panel is live; switch its modes.</p>
     <div class="viz-artifact rv" style="--d:2">
       <canvas id="vizCanvas" class="viz-canvas" aria-hidden="true"></canvas>
       <div class="viz-hud">
@@ -797,7 +797,7 @@ footer{border-top:1px solid var(--edge);background:var(--cavity);padding:34px 0 
   <div class="wrap">
     <div class="rail rv" aria-hidden="true"><span class="screw"></span><span class="fn">QUEUE · GIT POWERS</span><span class="rule"></span><span class="screw"></span></div>
     <h2 class="rv">A queue you can <span class="lit">branch, snapshot, rewind.</span></h2>
-    <p class="lede rv" style="--d:1">Unlimited queue tabs with independent state. <b>Snapshots</b> save a queue to restore later, <b>branches</b> fork it like git, and <b>undo runs 50 levels deep</b> — so the shuffle you regret is never permanent. Smart shuffle stays artist- and genre-aware.</p>
+    <p class="lede rv" style="--d:1">Unlimited queue tabs with independent state. <b>Snapshots</b> save a queue to restore later, <b>branches</b> fork it like git, and <b>undo runs 50 levels deep</b>, so the shuffle you regret is never permanent. Smart shuffle stays artist- and genre-aware.</p>
     <div class="artifact rv" style="--d:2">
       <div class="qtabs" role="tablist" aria-label="Queue tabs">
         <button class="chip" role="tab" aria-selected="true" data-q="0" aria-pressed="true">Queue 1 · Night Drive</button>
@@ -849,7 +849,7 @@ footer{border-top:1px solid var(--edge);background:var(--cavity);padding:34px 0 
   <div class="wrap">
     <div class="rail rv" aria-hidden="true"><span class="screw"></span><span class="fn">DISCOVERY · ON-DEVICE</span><span class="rule"></span><span class="screw"></span></div>
     <h2 class="rv">It learns what <span class="lit">you replay.</span></h2>
-    <p class="lede rv" style="--d:1"><b>Daily Mixes</b> rebuilt every morning from your own library and habits, <b>Start Radio</b> queues from a song you love, and <b>Trending charts</b> refreshed daily — no cloud profile, just your listening history doing the work.</p>
+    <p class="lede rv" style="--d:1"><b>Daily Mixes</b> rebuilt every morning from your own library and habits, <b>Start Radio</b> queues from a song you love, and <b>Trending charts</b> refreshed daily: no cloud profile, just your listening history doing the work.</p>
     <div class="artifact rv" style="--d:2">
       <div class="disc">
         <div class="mix">
@@ -866,7 +866,7 @@ footer{border-top:1px solid var(--edge);background:var(--cavity);padding:34px 0 
             <svg viewBox="0 0 26 10"><path d="M0 5h20m0 0-4-4m4 4-4 4" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
             <span class="mono">30-TRACK QUEUE</span>
           </div>
-          <p style="font-size:13.5px;color:var(--faint)">Built from songs you love, favorites, and what you finish — then starts playing.</p>
+          <p style="font-size:13.5px;color:var(--faint)">Built from songs you love, favorites, and what you finish, then it starts playing.</p>
         </div>
         <div class="trend">
           <div class="side-h-sm" style="margin-bottom:4px">Trending · today</div>
@@ -888,7 +888,7 @@ footer{border-top:1px solid var(--edge);background:var(--cavity);padding:34px 0 
   <div class="wrap">
     <div class="rail rv" aria-hidden="true"><span class="screw"></span><span class="fn">SIDE B · YOUR FILES</span><span class="rule"></span><span class="screw"></span></div>
     <h2 class="rv">Your collection, <span class="lit">kept and carried.</span></h2>
-    <p class="lede rv" style="--d:1">Organize into <b>playlists, favorites, and a library that's actually yours</b>. Grab audio with the <b>download manager</b> — pause, resume, retry, pick your quality. And <b>back up the whole thing</b>: playlists, favorites and history restore on a new phone without starting over.</p>
+    <p class="lede rv" style="--d:1">Organize into <b>playlists, favorites, and a library that's actually yours</b>. Grab audio with the <b>download manager</b> (pause, resume, retry, pick your quality). And <b>back up the whole thing</b>: playlists, favorites and history restore on a new phone without starting over.</p>
     <div class="artifact two-col rv" style="--d:2">
       <div class="col">
         <div class="side-h">Download manager</div>
@@ -957,7 +957,7 @@ footer{border-top:1px solid var(--edge);background:var(--cavity);padding:34px 0 
   <div class="wrap">
     <div class="rail rv" aria-hidden="true"><span class="screw"></span><span class="fn">SCENES · THEME</span><span class="rule"></span><span class="screw"></span></div>
     <h2 class="rv">Seven scenes. <span class="lit">Twenty-plus hues.</span></h2>
-    <p class="lede rv" style="--d:1">A <b>scene</b> bundles EQ, speed, crossfade, volume and visualizer into one switch — Night, Car, Gym, Coding, Flight, Party, Sleep. And like the app, this page is <b>fully dark-first with 20+ accent colors</b>: pick a hue and the whole bench relights.</p>
+    <p class="lede rv" style="--d:1">A <b>scene</b> bundles EQ, speed, crossfade, volume and visualizer into one switch: Night, Car, Gym, Coding, Flight, Party, Sleep. And like the app, this page is <b>fully dark-first with 20+ accent colors</b>: pick a hue and the whole bench relights.</p>
     <div class="artifact rv" style="--d:2">
       <div class="scene-row" role="group" aria-label="Scenes — each sets its accent">
         <button class="chip" data-hue="#f2b544" aria-pressed="true">Night</button>
@@ -990,7 +990,7 @@ footer{border-top:1px solid var(--edge);background:var(--cavity);padding:34px 0 
   <div class="wrap">
     <div class="rail rv" aria-hidden="true"><span class="screw"></span><span class="fn">OUTPUT · EVERYWHERE</span><span class="rule"></span><span class="screw"></span></div>
     <h2 class="rv">Plays on. <span class="lit">And on.</span></h2>
-    <p class="lede rv" style="--d:1">Leave the app — the music doesn't. Full <b>lock-screen and notification controls</b>, headphone and Bluetooth button support, a <b>slide-to-skip mini player</b>, a home-screen widget, CarPlay on iOS — and playback that survives swiping the app away.</p>
+    <p class="lede rv" style="--d:1">Leave the app; the music doesn't. Full <b>lock-screen and notification controls</b>, headphone and Bluetooth button support, a <b>slide-to-skip mini player</b>, a home-screen widget, CarPlay on iOS, and playback that survives swiping the app away.</p>
     <div class="artifact rv" style="--d:2;max-width:640px">
       <div class="col">
         <div class="switches">
@@ -1027,7 +1027,7 @@ footer{border-top:1px solid var(--edge);background:var(--cavity);padding:34px 0 
       </a>
       <nav aria-label="Footer">
         <a href="support/"><span class="lamp" aria-hidden="true"></span>Support</a>
-        <a href="#">Privacy policy</a>
+        <a href="privacy/">Privacy policy</a>
         <a href="#chain">The signal chain</a>
       </nav>
       <p class="fine mono">REMUSIC RX-2 · BUILT WITH FLUTTER, POWERED BY MPV · FREE · AD-LIGHT · NO ACCOUNT</p>
@@ -1102,18 +1102,18 @@ var tIdx = 0;
 function tickTransport(now){
   var dt = (now - tLast)/1000; tLast = now;
   if (playing && !rm){ tPos += dt/228; if (tPos>=1){ tPos=0; tIdx=(tIdx+1)%tTitles.length; $("#ttitle").textContent = tTitles[tIdx]; } }
-  $("#tfill").style.width = (tPos*100).toFixed(1)+"%";
+  $("#tfill").style.transform = "scaleX(" + tPos.toFixed(4) + ")";
   var total = 228, cur = Math.round(total*tPos);
   $("#ttime").textContent = Math.floor(cur/60)+":"+("0"+cur%60).slice(-2)+" / 3:48";
   requestAnimationFrame(tickTransport);
 }
-if(!rm) requestAnimationFrame(tickTransport); else { $("#tfill").style.width="38%"; }
+if(!rm) requestAnimationFrame(tickTransport); else { $("#tfill").style.transform="scaleX(.38)"; }
 
 /* ---------- hero VU meters ---------- */
 var vc = ["#vuL","#vuR"].map(function(id){return $(id)});
 var vctx = vc.map(function(c){return c.getContext("2d")});
 var ledStrip = $("#ledStrip"), leds = [];
-for (var i=0;i<9;i++){
+for (var i=0;i<12;i++){
   var fm = document.createElement("div"); fm.className="fm";
   var bar = document.createElement("i"); fm.appendChild(bar); ledStrip.appendChild(fm); leds.push(bar);
 }
@@ -1163,13 +1163,13 @@ function drawVU(ctx, t, seed, lvl){
 function drawLeds(t){
   var accent = getComputedStyle(root).getPropertyValue("--accent").trim() || "#f2b544";
   leds.forEach(function(b,i){
-    var base = 0.16 + 0.1*Math.sin(t*0.0016 + i*0.9) + beat(t)*0.5*Math.max(0,1-i/4) + noise(i+3)*0.12 + scrollGain*0.3*(i/9);
-    if (!playing) base *= 0.45;
-    var v = Math.max(0.06, Math.min(1, base));
-    b.style.height = (v*100).toFixed(1)+"%";
-    b.className = i>=7 && v>0.72 ? "hot" : "";
-    if (i>=7 && v>0.72){ b.style.background="linear-gradient(180deg,#e8493f,#d3322c 50%,rgba(0,0,0,.25))"; }
-    else { b.style.background="linear-gradient(180deg,"+accent+","+accent+" 60%,rgba(0,0,0,.25))"; }
+    var f = i/12;
+    var base = 0.34 + 0.1*Math.sin(t*0.0016 + i*0.9) + beat(t)*0.42*Math.max(0,1-f*1.9) + 0.16*Math.abs(Math.sin(t*0.0031+i*1.7))*(0.3+f) + noise(i+3)*0.1 + scrollGain*0.3*f;
+    if (!playing) base *= 0.62;
+    var v = Math.max(0.1, Math.min(1, base));
+    b.style.transform = "scaleY(" + v.toFixed(3) + ")";
+    if (i>=9 && v>0.78){ b.className="hot"; b.style.background="linear-gradient(180deg,#e8493f,#d3322c 50%,rgba(0,0,0,.25))"; }
+    else { b.className=""; b.style.background="linear-gradient(180deg,"+accent+","+accent+" 55%,rgba(0,0,0,.3))"; }
   });
 }
 var heroVisible = true;
@@ -1210,28 +1210,44 @@ function setFaderUI(f, v){
 function drawEqCurve(){
   var c = $("#eqCurve"), ctx = c.getContext("2d");
   var w = c.clientWidth || c.parentElement.clientWidth, h = 120, dpr = window.devicePixelRatio||1;
-  if (c.width !== w*dpr){ c.width = w*dpr; c.height = h*dpr; }
+  if (c.width !== Math.round(w*dpr)){ c.width = Math.round(w*dpr); c.height = h*dpr; }
   ctx.setTransform(dpr,0,0,dpr,0,0);
   ctx.clearRect(0,0,w,h);
-  ctx.strokeStyle = "#252a33"; ctx.lineWidth = 1;
-  [0.25,0.5,0.75].forEach(function(p){ ctx.beginPath(); ctx.moveTo(0,h*p); ctx.lineTo(w,h*p); ctx.stroke(); });
-  ctx.strokeStyle = "#3a4150"; ctx.beginPath(); ctx.moveTo(0,h/2); ctx.lineTo(w,h/2); ctx.stroke();
+  var top = 14, bot = h-10, mid = (top+bot)/2, amp = (bot-top)/2 - 4;
+  ctx.font = "500 10px 'Chivo Mono',monospace";
+  ctx.textAlign = "left";
+  [[top,"+12"],[mid,"0"],[bot,"-12"]].forEach(function(gl){
+    ctx.strokeStyle = gl[1]==="0" ? "#39404d" : "#252a33";
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(34,gl[0]+0.5); ctx.lineTo(w,gl[0]+0.5); ctx.stroke();
+    ctx.fillStyle = "#565d68";
+    ctx.fillText(gl[1], 6, gl[0]+3.5);
+  });
   var accent = getComputedStyle(root).getPropertyValue("--accent").trim() || "#f2b544";
-  var pts = gains.map(function(g,i){ return [ (i+0.5)/10*w, h/2 - g/12*(h/2-10) ] });
-  ctx.beginPath(); ctx.moveTo(0,h/2 - gains[0]/12*(h/2-10)*0.9);
-  for (var i=0;i<pts.length;i++){
-    if (i===0) ctx.lineTo(pts[0][0],pts[0][1]);
-    else{
+  var yFor = function(g){ return mid - g/12*amp; };
+  var pts = gains.map(function(g,i){ return [ 34 + (i+0.5)/10*(w-34), yFor(g) ] });
+  function trace(){
+    ctx.beginPath();
+    ctx.moveTo(34, yFor(gains[0]));
+    for (var i=1;i<pts.length;i++){
       var px = pts[i-1], cxm = (px[0]+pts[i][0])/2;
       ctx.bezierCurveTo(cxm,px[1],cxm,pts[i][1],pts[i][0],pts[i][1]);
     }
+    ctx.lineTo(w, yFor(gains[9]));
   }
-  ctx.lineTo(w, h/2 - gains[9]/12*(h/2-10)*0.9);
-  ctx.strokeStyle = accent; ctx.lineWidth = 2.2; ctx.stroke();
-  ctx.lineTo(w,h); ctx.lineTo(0,h); ctx.closePath();
-  ctx.fillStyle = accent==="#f2b544" ? "rgba(242,181,68,.07)" : accent+"12";
+  trace();
+  ctx.lineTo(w, bot); ctx.lineTo(34, bot); ctx.closePath();
+  ctx.fillStyle = accent==="#f2b544" ? "rgba(242,181,68,.05)" : accent+"0d";
   ctx.fill();
-  pts.forEach(function(p){ ctx.fillStyle = accent; ctx.beginPath(); ctx.arc(p[0],p[1],2.6,0,7); ctx.fill(); });
+  trace();
+  ctx.strokeStyle = accent; ctx.lineWidth = 2.2;
+  ctx.shadowColor = accent; ctx.shadowBlur = 6;
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+  pts.forEach(function(p){
+    ctx.fillStyle = "#181b21"; ctx.beginPath(); ctx.arc(p[0],p[1],4,0,7); ctx.fill();
+    ctx.fillStyle = accent; ctx.beginPath(); ctx.arc(p[0],p[1],2.4,0,7); ctx.fill();
+  });
 }
 function bindFader(f){
   var i = +f.dataset.i;
@@ -1275,6 +1291,8 @@ function markCustom(){
   $$("[data-preset]").forEach(function(b){ b.setAttribute("aria-pressed", String(match && b.dataset.preset=== (match?Object.keys(presets).find(function(k){return presets[k].every(function(v,i){return Math.abs(v-gains[i])<0.01})}):""))) });
 }
 $$(".fader").forEach(bindFader);
+var gains0 = presets.bass.slice();
+gains = gains0;
 function eqInit(){
   $$(".fader").forEach(function(f){ setFaderUI(f, gains[+f.dataset.i]) });
   drawEqCurve();
